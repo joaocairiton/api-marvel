@@ -1,0 +1,147 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    scroll-behavior: smooth;
+  }
+  /*Paletas de Cores*/
+  :root {
+    --bg-color: #0f0f0f;
+    --text-color: #fff;
+    --main-color: #f0310b;
+    --second-color: gray;
+    --other-color: #12141c;
+    --h1-font: 5.2rem;
+    --h2-font: 3.5rem;
+    --p-font: 1.5rem;
+  }
+  
+  body {
+    
+    color: var(--text-color);
+  }
+  header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: transparent;
+    padding: 22px 16%;
+    border-bottom: 1px solid transparent;
+    transition: all 0.4s ease;
+  }
+  .logo img {
+    width: 135px;
+    height: auto;
+    cursor: pointer;
+  }
+  .navbar {
+    display: flex;
+  }
+  .navbar a {
+    color: var(--text-color);
+    font-size: var(--p-font);
+    font-weight: 600;
+    padding: 10px 25px;
+    margin: 0 2px;
+    border-radius: 0.5rem;
+    transition: all 0.4s ease;
+  }
+  #menu-icon {
+    font-size: 36px;
+    color: var(--text-color);
+    z-index: 10001;
+    cursor: pointer;
+    display: none;
+  }
+  .navbar a:hover {
+    background: var(--second-color);
+    color: var(--text-color);
+  }
+
+  section {
+    padding: 160px 16% 90px;
+  }
+  /*==home===*/
+  .home {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background: url(../img/Torre.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+  }
+  
+  header.sticky {
+    padding: 10px 16%;
+    background: var(--bg-color);
+    border-bottom: 1px solid #0e1630;
+  }
+
+  @media (max-width: 1280px) {
+    header {
+      padding: 16px 3%;
+    }
+    header.sticky {
+      padding: 8px 3%;
+    }
+    section {
+      padding: 130px 3% 60px;
+    }
+  
+    
+  }
+  @media (max-width: 970px) {
+    :root {
+      --h1-font: 4.2rem;
+      --h2-font: 2.9rem;
+      --p-font: 1rem;
+    }
+    section {
+      padding: 70px 3% 60px;
+    }
+    .home {
+      height: 85vh;
+    }
+    
+  }
+  @media (max-width: 830px) {
+    #menu-icon {
+      display: block;
+    }
+    .navbar {
+      position: absolute;
+      top: -600px;
+      right: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      background: #12141c;
+      text-align: left;
+      transition: all 0.4s ease;
+    }
+    .navbar a {
+      display: block;
+      padding: 1rem;
+      margin: 1rem;
+    }
+    .navbar.active {
+      top: 100%;
+    }
+    :root {
+      --h1-font: 3.7rem;
+      --h2-font: 2.7rem;
+    }
+   
+  }
