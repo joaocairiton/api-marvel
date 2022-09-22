@@ -1,30 +1,38 @@
-const header = document.querySelector("header");
-window.addEventListener("scroll", function() {
-    header.classList.toggle("sticky", window.scrollY > 0);
-    
-});
+const PUBLIC_KEY = "ebf40665df0b233b6adbe16e029cca1c";
+const HASH = "44155eb204268aaf4500b9a2c1fda1b2";
+const ts = "1663706269";
 
-let menu = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+// Buscar todos os heróis da Marvel
+function getHero() {
+  fetch(
+    `https://gateway.marvel.com/v1/public/characters?ts=1&apikey=${PUBLIC_KEY}&hash=${HASH}&limit=100`
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      const heroi = response.data.results;
+      setHero(heroi);
+    });
+}
+getHero();
 
+function setHero(heroi) {
+  let card = document.getElementById("card");
 
-menu.onclick = () =>{
-    menu.classList.toggle('bx-x');
-    navbar.classList.toggle('active');
-};
+  const heroesHTML = heroi.map((hero) => {
+    let CardElement = `
+    <div class="hero" >
+        <img src="${hero.thumbnail.path}.${hero.thumbnail.extension}" >
+        <div class="card-body">
+          <span class="card-title">${hero.name}</span>
+          <a href="${hero.urls[0].url}" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+   
+      `;
 
-window.onscroll = () => {
-	menu.classList.remove('bx-x');
-	navbar.classList.remove('active');
-};
+    return CardElement;
+  });
 
-const sr = ScrollReveal ({
-	distance: '25px',
-	duration: 2500,
-	reset: true
-})
-
-sr.reveal('.home-text',{delay:190, origin:'bottom'})
-
-sr.reveal('.hero,.vilao',{delay:200, origin:'bottom'})
+  card.innerHTML = heroesHTML.join(" ");
+}
 
